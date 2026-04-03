@@ -13,9 +13,21 @@ type AuditLog = {
   riskLevel?: string;
 };
 
-function authHeaders(): Record<string, string> {
+function authHeaders(extra: Record<string, string> = {}): Record<string, string> {
   const token = localStorage.getItem("admin_access_token");
-  return token ? { Authorization: `Bearer ${token}` } : {};
+
+  const baseHeaders: Record<string, string> = {
+    "ngrok-skip-browser-warning": "true",
+  };
+
+  if (token) {
+    baseHeaders.Authorization = `Bearer ${token}`;
+  }
+
+  return {
+    ...baseHeaders,
+    ...extra,
+  };
 }
 
 export default function AdminLogsPage() {
@@ -45,6 +57,7 @@ export default function AdminLogsPage() {
         : `${API_BASE_URL}/api/v1/audit-logs?limit=50`;
 
       const response = await fetch(url, {
+        method: "GET",
         headers: authHeaders(),
       });
 
