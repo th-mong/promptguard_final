@@ -1,0 +1,26 @@
+# Python
+data/raw/
+data/processed/
+data/splits/
+/models/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+build/
+.pytest_cache/
+.ruff_cache/
+*.onnx
+wandb/
+mlruns/
+.ipynb_checkpoints/
+
+# Node.js / TypeScript
+node_modules/
+dist/
+
+# OS
+.DS_Store
+
+# Shared
+.env
