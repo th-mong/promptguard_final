@@ -16,7 +16,7 @@
     }
   ],
   "host_permissions": [
-    "https://amee-unforestalled-synodically.ngrok-free.app/*"
+    "https://promptguard-final.vercel.app/admin/login"
   ],
   "web_accessible_resources": [
     {
