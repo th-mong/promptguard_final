@@ -69,9 +69,10 @@ async function instantiateWasm(module, imports = {}) {
 let wasmModule = null;
 let analyzePrompt = null;
 
-const RULES_API_URL = 'https://amee-unforestalled-synodically.ngrok-free.app/admin/rules/active';
-const SCORE_API_URL = 'https://amee-unforestalled-synodically.ngrok-free.app/api/v1/score';
-const FILE_SCAN_API_URL = 'https://amee-unforestalled-synodically.ngrok-free.app/api/v1/scan-file';
+const API_BASE_URL = 'https://promptguard-final.vercel.app/admin/login';
+const RULES_API_URL = `${API_BASE_URL}/admin/rules/active`;
+const SCORE_API_URL = `${API_BASE_URL}/api/v1/score`;
+const FILE_SCAN_API_URL = `${API_BASE_URL}/api/v1/scan-file`;
 const RULES_REFRESH_MS = 60 * 1000;
 
 let activeRules = [];
@@ -285,19 +286,36 @@ async function fetchActiveRules() {
       },
     });
 
+    console.log('[Rules] URL:', RULES_API_URL);
+    console.log('[Rules] status:', response.status);
+
+    const rawText = await response.text();
+    console.log('[Rules] raw response:', rawText);
+
     if (!response.ok) {
-      throw new Error(`룰 조회 실패: ${response.status}`);
+      throw new Error(`룰 조회 실패: ${response.status} / ${rawText}`);
     }
 
-    const data = await response.json();
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch (e) {
+      throw new Error(`JSON 파싱 실패: ${e.message}`);
+    }
 
-    activeRules = Array.isArray(data.rules) ? data.rules : [];
+    activeRules = Array.isArray(data)
+      ? data
+      : Array.isArray(data.rules)
+        ? data.rules
+        : [];
+
     rulesVersion = data.version || '0.0.0';
     lastFetchedAt = Date.now();
 
     console.log(`✅ [Rules] 활성 룰 ${activeRules.length}개 로드 완료 (version: ${rulesVersion})`);
   } catch (error) {
     console.error('❌ [Rules] 활성 룰 로드 실패:', error);
+    console.error('❌ [Rules] message:', error?.message);
   }
 }
 
