@@ -12,7 +12,9 @@
       "js": ["content.js"]
     }
   ],
-  "host_permissions": ["https://promptguard-final.vercel.app/*"],
+  "host_permissions": [
+    "https://amee-unforestalled-synodically.ngrok-free.dev/*"
+  ],
   "web_accessible_resources": [
     {
       "resources": ["build/release.wasm"],
