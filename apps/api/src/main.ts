@@ -13,29 +13,24 @@ async function bootstrap() {
     bodyParser: true,
   });
 
-  // 보안 헤더 (X-Content-Type-Options, X-Frame-Options, HSTS 등)
   app.use(helmet({
-    contentSecurityPolicy: false,  // Swagger UI 호환
+    contentSecurityPolicy: false,
   }));
 
-  // Body size limit: 1MB (초대형 페이로드 방지)
   app.use(require('express').json({ limit: '1mb' }));
 
   app.useGlobalPipes(globalValidationPipe);
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new LoggingInterceptor());
 
+  // 🔥 핵심 수정 부분
   app.enableCors({
-    origin: [
-      'http://localhost:5173',
-      'http://127.0.0.1:5173',
-    ],
+    origin: true, // ⭐ 모든 origin 허용 (지금 상황 최적)
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-key'],
   });
 
-  // Swagger: development 환경에서만 활성화
   const config = app.get(ConfigService);
   const nodeEnv = config.get<string>('app.nodeEnv', 'development');
 
