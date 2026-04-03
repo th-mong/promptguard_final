@@ -28,7 +28,7 @@ async function bootstrap() {
     origin: true, // ⭐ 모든 origin 허용 (지금 상황 최적)
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-key'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-key', 'ngrok-skip-browser-warning'],
   });
 
   const config = app.get(ConfigService);

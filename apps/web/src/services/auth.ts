@@ -27,6 +27,7 @@ const api = axios.create({
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 'true',
   },
 });
 
@@ -42,7 +43,14 @@ export async function adminLogin(
 
 export function authHeaders(): Record<string, string> {
   const token = localStorage.getItem('admin_access_token');
-  return token ? { Authorization: `Bearer ${token}` } : {};
+  return token
+    ? {
+        Authorization: `Bearer ${token}`,
+        'ngrok-skip-browser-warning': 'true',
+      }
+    : {
+        'ngrok-skip-browser-warning': 'true',
+      };
 }
 
 export function authJsonHeaders(): Record<string, string> {
