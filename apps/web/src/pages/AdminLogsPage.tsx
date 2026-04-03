@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const API_BASE_URL = "https://amee-unforestalled-synodically.ngrok-free.app";
+const API_BASE_URL = "https://amee-unforestalled-synodically.ngrok-free.dev";
 
 type AuditLog = {
   id: string;
