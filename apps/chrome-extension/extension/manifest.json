@@ -8,23 +8,15 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://chatgpt.com/*",
-        "https://chat.openai.com/*"
-      ],
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
       "js": ["content.js"]
     }
   ],
-  "host_permissions": [
-    "https://promptguard-final.vercel.app/admin/login"
-  ],
+  "host_permissions": ["https://promptguard-final.vercel.app/*"],
   "web_accessible_resources": [
     {
       "resources": ["build/release.wasm"],
-      "matches": [
-        "https://chatgpt.com/*",
-        "https://chat.openai.com/*"
-      ]
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"]
     }
   ],
   "content_security_policy": {
