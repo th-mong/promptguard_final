@@ -35,7 +35,19 @@ type RuleForm = {
 const API_BASE_URL = "https://amee-unforestalled-synodically.ngrok-free.dev";
 function adminHeaders(extra: Record<string, string> = {}): Record<string, string> {
   const token = localStorage.getItem('admin_access_token');
-  return token ? { Authorization: `Bearer ${token}`, ...extra } : extra;
+
+  const baseHeaders: Record<string, string> = {
+    'ngrok-skip-browser-warning': 'true',
+  };
+
+  if (token) {
+    baseHeaders.Authorization = `Bearer ${token}`;
+  }
+
+  return {
+    ...baseHeaders,
+    ...extra,
+  };
 }
 
 const CATEGORIES: Category[] = [
