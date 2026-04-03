@@ -69,7 +69,7 @@ async function instantiateWasm(module, imports = {}) {
 let wasmModule = null;
 let analyzePrompt = null;
 
-const API_BASE_URL = 'https://promptguard-final.vercel.app/admin/login';
+const API_BASE_URL = 'https://promptguard-final.vercel.app';
 const RULES_API_URL = `${API_BASE_URL}/admin/rules/active`;
 const SCORE_API_URL = `${API_BASE_URL}/api/v1/score`;
 const FILE_SCAN_API_URL = `${API_BASE_URL}/api/v1/scan-file`;
