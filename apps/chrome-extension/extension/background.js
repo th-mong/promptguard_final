@@ -248,7 +248,7 @@ async function loadWasmEngine() {
       instantiateWasm(compiledModule, {
         env: { abort: () => console.error('Wasm aborted') },
       }),
-      5000,
+      15000,
     );
 
     analyzePrompt =
