@@ -32,7 +32,7 @@ type RuleForm = {
   enabled: boolean;
 };
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = "https://amee-unforestalled-synodically.ngrok-free.app";
 function adminHeaders(extra: Record<string, string> = {}): Record<string, string> {
   const token = localStorage.getItem('admin_access_token');
   return token ? { Authorization: `Bearer ${token}`, ...extra } : extra;
