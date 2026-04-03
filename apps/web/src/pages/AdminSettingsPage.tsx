@@ -87,7 +87,7 @@ export default function AdminSettingsPage() {
           <div className="card">
             <h3>API 서버 주소</h3>
             <p>
-              관리자 콘솔은 현재 <code>http://localhost:3000</code> 백엔드 API와
+              관리자 콘솔은 현재 <code>https://amee-unforestalled-synodically.ngrok-free.app</code> 백엔드 API와
               연결되어 룰 CRUD 및 활성 룰 배포 기능을 수행합니다.
             </p>
           </div>

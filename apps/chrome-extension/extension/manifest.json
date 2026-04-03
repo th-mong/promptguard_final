@@ -16,7 +16,7 @@
     }
   ],
   "host_permissions": [
-    "http://localhost:3000/*"
+    "https://amee-unforestalled-synodically.ngrok-free.app/*"
   ],
   "web_accessible_resources": [
     {
